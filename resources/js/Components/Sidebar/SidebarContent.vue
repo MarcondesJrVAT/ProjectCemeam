@@ -14,7 +14,7 @@ import { TemplateIcon } from '@heroicons/vue/outline'
         class="relative flex flex-col flex-1 max-h-full gap-4 px-3"
     >
         <SidebarLink
-            title="Dashboard"
+            title="Início"
             :href="route('dashboard')"
             :active="route().current('dashboard')"
         >
@@ -27,7 +27,7 @@ import { TemplateIcon } from '@heroicons/vue/outline'
         </SidebarLink>
 
         <SidebarCollapsible
-            title="Components"
+            title="Usuários"
             :active="route().current('components.*')"
         >
             <template #icon>
