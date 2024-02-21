@@ -20,9 +20,9 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout title="Confirm Password">
+    <GuestLayout title="Confirme Senha">
         <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-            This is a secure area of the application. Please confirm your password before continuing.
+            Esta é uma área segura da aplicação. Por favor, confirme sua senha antes de continuar.
         </div>
 
         <ValidationErrors class="mb-4" />
@@ -30,18 +30,18 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div class="grid gap-4">
                 <div class="space-y-2">
-                    <Label for="password" value="Password" />
+                    <Label for="password" value="Senha" />
                     <InputIconWrapper>
                         <template #icon>
                             <LockClosedIcon aria-hidden="true" class="w-5 h-5" />
                         </template>
-                        <Input withIcon id="password" type="password" class="block w-full" placeholder="Password" v-model="form.password" required autocomplete="current-password" autofocus />
+                        <Input withIcon id="password" type="password" class="block w-full" placeholder="Senha" v-model="form.password" required autocomplete="current-password" autofocus />
                     </InputIconWrapper>
                 </div>
 
                 <div>
                     <Button class="w-full justify-center" :disabled="form.processing">
-                        Confirm
+                        Confirmar
                     </Button>
                 </div>
             </div>

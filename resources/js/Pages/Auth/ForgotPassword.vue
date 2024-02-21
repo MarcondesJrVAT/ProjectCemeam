@@ -24,7 +24,7 @@ const submit = () => {
 <template>
     <GuestLayout title="Forgot Password">
         <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-            Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
+            Esqueceu sua senha? Sem problemas. Basta nos informar seu endereço de e-mail e enviaremos por e-mail um link de redefinição de senha que permitirá que você escolha uma nova.
         </div>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -36,19 +36,19 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div class="grid gap-6">
                 <div class="space-y-2">
-                    <Label for="email" value="Email" />
+                    <Label for="email" value="E-mail" />
                     <InputIconWrapper>
                         <template #icon>
                             <MailIcon aria-hidden="true" class="w-5 h-5" />
                         </template>
-                        <Input withIcon id="email" type="email" class="block w-full" placeholder="Email" v-model="form.email" required autofocus autocomplete="username" />
+                        <Input withIcon id="email" type="email" class="block w-full" placeholder="E-mail" v-model="form.email" required autofocus autocomplete="username" />
                     </InputIconWrapper>
                 </div>
 
                 <div>
                     <Button class="justify-center gap-2 w-full" :disabled="form.processing" v-slot="{ iconSizeClasses }">
                         <PaperAirplaneIcon aria-hidden="true" :class="iconSizeClasses" />
-                        <span>Email Password Reset Link</span>
+                        <span>Link de redefinição de senha de e-mail</span>
                     </Button>
                 </div>
             </div>
