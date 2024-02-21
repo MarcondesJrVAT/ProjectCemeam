@@ -1,4 +1,4 @@
-# Administração do Projeto
+# Projeto Centro de Mídia do Amazonas
 
 Este é um projeto de site administrativo desenvolvido com PHP 8.2, Laravel 10, Nginx 1.25, MySQL 5.7 e Redis 7. O objetivo deste projeto é fornecer uma plataforma robusta e eficiente para gerenciamento administrativo.
 
