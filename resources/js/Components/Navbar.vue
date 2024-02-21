@@ -53,7 +53,8 @@ onUnmounted(() => {
                 @click="() => { toggleDarkMode() }"
                 v-slot="{ iconSizeClasses }"
                 class="md:hidden"
-                srText="Toggle dark mode"
+                srText="Botão Modo Escuro"
+                alt="Botão Modo Escuro"
             >
                 <MoonIcon
                     v-show="!isDark"
@@ -75,7 +76,7 @@ onUnmounted(() => {
                 @click="() => { toggleDarkMode() }"
                 v-slot="{ iconSizeClasses }"
                 class="hidden md:inline-flex"
-                srText="Toggle dark mode"
+                srText="Botão Modo Escuro"
             >
                 <MoonIcon
                     v-show="!isDark"
@@ -96,7 +97,7 @@ onUnmounted(() => {
                 @click="toggleFullScreen"
                 v-slot="{ iconSizeClasses }"
                 class="hidden md:inline-flex"
-                srText="Toggle dark mode"
+                srText="Botão Modo Escuro"
             >
                 <ArrowsExpandIcon
                     v-show="!isFullscreen"
@@ -116,7 +117,7 @@ onUnmounted(() => {
                     <span class="inline-flex rounded-md">
                         <button
                             type="button"
-                            class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none focus:ring focus:ring-purple-500 focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark-eval-1 dark:bg-dark-eval-1 dark:text-gray-400 dark:hover:text-gray-200"
+                            class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark-eval-1 dark:bg-dark-eval-1 dark:text-gray-400 dark:hover:text-gray-200"
                         >
                             {{ $page.props.auth.user.name }}
 
@@ -140,7 +141,7 @@ onUnmounted(() => {
                     <DropdownLink
                         :href="route('profile.edit')"
                     >
-                        Profile
+                        Configurações
                     </DropdownLink>
 
                     <DropdownLink
@@ -148,7 +149,7 @@ onUnmounted(() => {
                         method="post"
                         as="button"
                     >
-                        Log Out
+                        Acessar Sessão
                     </DropdownLink>
                 </template>
             </Dropdown>
@@ -170,14 +171,14 @@ onUnmounted(() => {
             variant="secondary"
             type="button"
             v-slot="{ iconSizeClasses }"
-            srText="Search"
+            srText="Pesquisa"
         >
             <SearchIcon aria-hidden="true" :class="iconSizeClasses" />
         </Button>
 
         <Link :href="route('dashboard')">
             <ApplicationLogo class="w-10 h-10" />
-            <span class="sr-only">K UI</span>
+            <span class="sr-only">Cemeam</span>
         </Link>
 
         <Button
@@ -187,7 +188,7 @@ onUnmounted(() => {
             @click="sidebarState.isOpen = !sidebarState.isOpen"
             v-slot="{ iconSizeClasses }"
             class="md:hidden"
-            srText="Search"
+            srText="Pesquisa"
         >
             <MenuIcon
                 v-show="!sidebarState.isOpen"

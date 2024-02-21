@@ -13,35 +13,18 @@ import { TemplateIcon } from '@heroicons/vue/outline'
         aria-label="main"
         class="relative flex flex-col flex-1 max-h-full gap-4 px-3"
     >
-        <SidebarLink
-            title="Início"
-            :href="route('dashboard')"
-            :active="route().current('dashboard')"
-        >
+        <SidebarLink title="Início" :href="route('dashboard')" :active="route().current('dashboard')">
             <template #icon>
-                <DashboardIcon
-                    class="flex-shrink-0 w-6 h-6"
-                    aria-hidden="true"
-                />
+                <DashboardIcon class="flex-shrink-0 w-6 h-6" aria-hidden="true"/>
             </template>
         </SidebarLink>
 
-        <SidebarCollapsible
-            title="Usuários"
-            :active="route().current('components.*')"
-        >
+        <SidebarCollapsible title="Usuários" :active="route().current('components.*')">
             <template #icon>
-                <TemplateIcon
-                    class="flex-shrink-0 w-6 h-6"
-                    aria-hidden="true"
-                />
+                <TemplateIcon class="flex-shrink-0 w-6 h-6" aria-hidden="true"/>
             </template>
 
-            <SidebarCollapsibleItem
-                :href="route('components.buttons')"
-                title="Buttons"
-                :active="route().current('components.buttons')"
-            />
+            <SidebarCollapsibleItem :href="route('components.buttons')" title="Buttons" :active="route().current('components.buttons')"/>
         </SidebarCollapsible>
 
         <!-- Examples -->
