@@ -50,10 +50,12 @@ Route::middleware('auth')->group(function () {
 Route::controller(UserController::class)->prefix('usuarios')->group(function () {
     Route::get('/', 'index')->name('users.index');
     Route::get('/cadastrar', 'create')->name('users.create');
+    Route::delete('/{id}', 'destroy')->name('users.destroy');
 });
 
 Route::controller(RoleController::class)->prefix('permissoes')->group(function () {
     Route::get('/', 'index')->name('roles.index');
+    Route::get('/criar-permissao', 'create')->name('roles.create');
 });
 
 Route::controller(NewsController::class)->prefix('noticias')->group(function () {
