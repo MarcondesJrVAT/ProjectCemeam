@@ -14,7 +14,9 @@ import Input from "@/Components/Input.vue";
 import Button from "@/Components/Button.vue";
 import Pagination from '../../Shared/Pagination.vue';
 import {router} from "@inertiajs/vue3";
-import {ref} from "vue";
+import {nextTick, ref} from "vue";
+import Modal from "@/Components/Modal.vue";
+import Checkbox from "@/Components/Checkbox.vue";
 
 let props = defineProps({
     sort: {
@@ -37,7 +39,14 @@ let props = defineProps({
 
 let sort = ref(props.sort);
 let sortDir = ref(props.sortDir);
-let canDelete = ref(false);
+const creatingPermission = ref(false);
+
+const createPermission = () => {
+    creatingPermission.value = true
+}
+const closeModal = () => {
+    creatingPermission.value = false
+}
 
 function sortBy(field) {
     sort.value = field;
@@ -64,8 +73,6 @@ function destroy(id) {
     })
 }
 
-
-
 </script>
 
 <template>
@@ -86,10 +93,63 @@ function destroy(id) {
                             class="border rounded-lg divide-y divide-gray-200 dark:border-gray-700 dark:divide-gray-700">
                             <div class="py-3 px-4 flex justify-between">
                                 <div class="relative max-w-xs">
-                                    <Button variant="success" :href="route('roles.create')">
+                                    <Button variant="success" @click="createPermission">
                                         <PlusIcon class="flex-shrink-0 w-6 h-6 mr-1" aria-hidden="true"/>
                                         <span>Criar Nova Permissão</span>
                                     </Button>
+                                    <Modal :show="creatingPermission" @close="closeModal">
+                                        <div class="p-6">
+                                            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                                Criar Nova Permissão
+                                            </h2>
+
+                                            <p class="mt-1 text-md text-gray-600 dark:text-gray-400">
+                                                Preencha o título e nome de exibição da permissão:
+                                            </p>
+
+                                            <div class="mt-2">
+                                                <Label for="name" value="name" class="sr-only" />
+                                                <Input id="name" ref="passwordInput" type="text" class="my-2 block w-full" placeholder="Título"/>
+                                                <Label for="description" value="description" class="sr-only" />
+                                                <Input id="description" ref="passwordInput" type="text" class="my-2 block w-full" placeholder="Nome de Exibição"/>
+                                            </div>
+
+                                            <p class="mt-4 text-md text-gray-600 dark:text-gray-400">
+                                                Selecione as habilidades desta permissão:
+                                            </p>
+
+                                            <div class="mt-2">
+                                                <div>
+                                                    <Label for="name" value="Funções" class="text-xl" />
+                                                    <div v-for="ability in abilities" :key="ability.id">
+                                                        <Label :for="ability.name" :value="ability.name"/>
+                                                        <Checkbox value="true" />
+                                                    </div>
+
+                                                    <hr>
+                                                    <Label for="description" value="Geral" class="text-xl" />
+                                                    <Checkbox />
+                                                    <hr>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="mt-6 flex justify-end">
+                                                <Button variant="secondary" @click="closeModal">
+                                                    Cancelar
+                                                </Button>
+
+                                                <Button
+                                                    variant="success"
+                                                    class="ml-3"
+
+                                                    @click="createPermission"
+                                                >
+                                                    Finalizar
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </Modal>
                                 </div>
                             </div>
                             <div class="overflow-hidden">
@@ -152,9 +212,8 @@ function destroy(id) {
                                                 class="m-0.5 text-sm w-fit rounded-full bg-green-300 dark:bg-green-800 px-2 py-1 font-medium text-black dark:text-gray-300 ring-2 ring-inset ring-green-600 dark:ring-green-700">Habilidades</span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                            <button v-if="canDelete"
-                                                    type="button"
-                                                    class="hover:text-red-500 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                            <button type="button"
+                                                    class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-red-400 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-red-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                                     @click="destroy(role.id)">
                                                 <XCircleIcon class="flex-shrink-0 w-6 h-6" aria-hidden="true"/>
                                             </button>

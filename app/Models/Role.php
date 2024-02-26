@@ -14,7 +14,7 @@ class Role extends Model
         'name'
     ];
 
-    public function abilitiesRelationship(): BelongsToMany
+    public function abilities(): BelongsToMany
     {
         return $this->belongsToMany(Ability::class);
     }

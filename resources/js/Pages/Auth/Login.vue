@@ -28,7 +28,7 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout title="Acesso">
+    <GuestLayout title="Acessar">
         <ValidationErrors class="mb-4" />
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">

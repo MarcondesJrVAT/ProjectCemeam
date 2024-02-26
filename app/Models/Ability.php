@@ -10,7 +10,7 @@ class Ability extends Model
 {
     use HasFactory;
 
-    public function rolesRelationship(): BelongsToMany
+    public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class);
     }

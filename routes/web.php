@@ -47,53 +47,53 @@ Route::middleware('auth')->group(function () {
     Route::delete('/perfil', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::controller(UserController::class)->prefix('usuarios')->group(function () {
-    Route::get('/', 'index')->name('users.index');
-    Route::get('/cadastrar', 'create')->name('users.create');
-    Route::delete('/{id}', 'destroy')->name('users.destroy');
+Route::controller(UserController::class)->prefix('usuarios')->name('users.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/cadastrar', 'create')->name('create');
+    Route::delete('/{id}', 'destroy')->name('destroy');
 });
 
-Route::controller(RoleController::class)->prefix('permissoes')->group(function () {
-    Route::get('/', 'index')->name('roles.index');
-    Route::get('/criar-permissao', 'create')->name('roles.create');
-    Route::delete('/{id}', 'destroy')->name('roles.destroy');
+Route::controller(RoleController::class)->prefix('permissoes')->name('roles.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/criar-permissao', 'create')->name('create');
+    Route::delete('/{id}', 'destroy')->name('destroy');
 });
 
-Route::controller(NewsController::class)->prefix('noticias')->group(function () {
-    Route::get('/', 'index')->name('news.index');
-    Route::get('/categorias', 'categoryNews')->name('news.category');
+Route::controller(NewsController::class)->prefix('noticias')->name('news.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/categorias', 'categoryNews')->name('category');
 });
 
-Route::controller(ContentController::class)->prefix('conteudos')->group(function () {
-    Route::get('/categorias', 'contentCategory')->name('content.category');
-    Route::get('/cursos', 'contentCourses')->name('content.courses');
-    Route::get('/series', 'contentSeries')->name('content.series');
-    Route::get('/componentes', 'contentComponents')->name('content.components');
-    Route::get('/anos-letivos', 'contentSchoolYear')->name('content.schoolyear');
-    Route::get('/aulas', 'contentClasses')->name('content.classes');
+Route::controller(ContentController::class)->prefix('conteudos')->name('content.')->group(function () {
+    Route::get('/categorias', 'contentCategory')->name('category');
+    Route::get('/cursos', 'contentCourses')->name('courses');
+    Route::get('/series', 'contentSeries')->name('series');
+    Route::get('/componentes', 'contentComponents')->name('components');
+    Route::get('/anos-letivos', 'contentSchoolYear')->name('schoolyear');
+    Route::get('/aulas', 'contentClasses')->name('classes');
 
 });
 
-Route::controller(SiteController::class)->prefix('sites')->group(function () {
-    Route::get('/', 'index')->name('site.index');
+Route::controller(SiteController::class)->prefix('sites')->name('site.')->group(function () {
+    Route::get('/', 'index')->name('index');
 });
 
-Route::controller(SlideController::class)->prefix('slides')->group(function () {
-    Route::get('/', 'index')->name('slide.index');
+Route::controller(SlideController::class)->prefix('slides')->name('slide.')->group(function () {
+    Route::get('/', 'index')->name('index');
 });
 
-Route::controller(AwardController::class)->prefix('premios')->group(function () {
-    Route::get('/', 'index')->name('award.index');
+Route::controller(AwardController::class)->prefix('premios')->name('award.')->group(function () {
+    Route::get('/', 'index')->name('index');
 });
 
-Route::controller(BannerController::class)->prefix('banners')->group(function () {
-    Route::get('/', 'index')->name('banner.index');
-    Route::get('/categorias', 'bannerCategory')->name('banner.category');
+Route::controller(BannerController::class)->prefix('banners')->name('banner.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/categorias', 'bannerCategory')->name('category');
 });
 
-Route::controller(CommentController::class)->prefix('comentarios')->group(function () {
-    Route::get('/', 'index')->name('comment.index');
-    Route::get('/configuracoes', 'commentSetup')->name('comment.setup');
+Route::controller(CommentController::class)->prefix('comentarios')->name('comment.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/configuracoes', 'commentSetup')->name('setup');
 });
 
 require __DIR__ . '/auth.php';

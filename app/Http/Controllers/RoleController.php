@@ -32,7 +32,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return "Página de criação de Permissões";
+        return Inertia::render('Roles/Create');
     }
 
     /**
@@ -72,6 +72,7 @@ class RoleController extends Controller
      */
     public function destroy(Request $request, string $id)
     {
+        $this->authorize('delete_role');
         $role = Role::query()->find($id);
 
         if (!$role) {
