@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class UserController extends Controller
@@ -13,7 +14,19 @@ class UserController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Users/Index', ['users' => User::all()]);
+        request()->validate([
+            'sortDir' => ['nullable', 'in:asc,desc'],
+            'sort' => ['nullable', 'in:id,name,email'],
+        ]);
+        return Inertia::render('Users/Index', [
+            'search' => request()->search,
+            'sort' => request()->sort ?? 'id',
+            'sortDir' => request()->sortDir ?? 'asc',
+            'users' => User::query()
+                ->when(request()->search, fn($q) => $q->where('name', 'LIKE', '%' . request()->search . '%'))
+                ->when(request()->sort, fn($q) => $q->orderBy(request()->sort, request()->sortDir))
+                ->paginate(10),
+        ]);
     }
 
     /**
@@ -61,6 +74,14 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::query()->find($id);
+
+        if (!$user) {
+            return Redirect::back()->with('error', 'Usuário não encontrado.');
+        }
+
+        $user->delete();
+
+        return Redirect::route('users.index')->with('success', 'Usuário excluído com sucesso.');
     }
 }
