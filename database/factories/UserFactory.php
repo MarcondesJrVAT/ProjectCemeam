@@ -24,10 +24,19 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+            'avatar' => fake()->image(),
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'about' => fake()->text(),
+            'website' => fake()->url(),
+            'lattes' => fake()->url(),
+            'facebook' => fake()->url(),
+            'twitter' => fake()->url(),
+            'instagram' => fake()->url(),
+            'linkedin' => fake()->url(),
+            'github' => fake()->url(),
             'remember_token' => Str::random(10),
         ];
     }
